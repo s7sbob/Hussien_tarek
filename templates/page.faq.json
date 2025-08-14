@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q1": {"type": "collapsible_row", "settings": {"heading": "سؤال متكرر 1", "row_content": "<p>إجابة مختصرة عن السؤال.<\/p>"}},
+        "q2": {"type": "collapsible_row", "settings": {"heading": "سؤال متكرر 2", "row_content": "<p>تفاصيل الإجابة.<\/p>"}},
+        "q3": {"type": "collapsible_row", "settings": {"heading": "سؤال متكرر 3", "row_content": "<p>تفاصيل إضافية.<\/p>"}}
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": {
+        "caption": "",
+        "heading": "الأسئلة الشائعة",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "image": null,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_first",
+        "color_scheme": "scheme-1",
+        "container_color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "layout": "section",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    }
+  },
+  "order": ["faq"]
+}

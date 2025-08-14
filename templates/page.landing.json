@@ -1,0 +1,148 @@
+{
+  "sections": {
+    "hero": {
+      "type": "custom-hero",
+      "blocks": {
+        "badge": { "type": "badge", "settings": { "text": "New" } },
+        "heading": { "type": "heading", "settings": { "heading": "عنوان رئيسي جذاب", "heading_size": "h0" } },
+        "text": { "type": "text", "settings": { "text": "<p>وصف قصير لما تقدمه — سطر أو سطران كحد أقصى.<\/p>" } },
+        "buttons": { "type": "buttons", "settings": { "button_label_1": "تسوق الآن", "button_link_1": "shopify:\/\/collections\/all", "button_style_secondary_1": false, "button_label_2": "اعرف المزيد", "button_link_2": "#", "button_style_secondary_2": true } }
+      },
+      "block_order": ["badge", "heading", "text", "buttons"],
+      "settings": {
+        "image": null,
+        "image_behavior": "none",
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "features": {
+      "type": "icon-features",
+      "blocks": {
+        "feature_1": { "type": "feature", "settings": { "icon": null, "title": "شحن سريع", "text": "<p>توصيل موثوق لكل المناطق.<\/p>" } },
+        "feature_2": { "type": "feature", "settings": { "icon": null, "title": "ضمان الجودة", "text": "<p>منتجات أصلية ومضمونة.<\/p>" } },
+        "feature_3": { "type": "feature", "settings": { "icon": null, "title": "دعم 24\/7", "text": "<p>خدمة عملاء على مدار الساعة.<\/p>" } }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3"],
+      "settings": {
+        "title": "لماذا تختارنا",
+        "heading_size": "h2",
+        "full_width": false,
+        "color_scheme": "scheme-1",
+        "columns_desktop": 3,
+        "columns_mobile": 2,
+        "padding_top": 44,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "قسم صورة مع نص", "heading_size": "h2" } },
+        "text": { "type": "text", "settings": { "text": "<p>استخدم هذا القسم لعرض ميزة أو قصة العلامة.<\/p>" } },
+        "button": { "type": "button", "settings": { "button_label": "اعرف المزيد", "button_link": "#", "button_style_secondary": true } }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "image": null,
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "image_behavior": "none",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "scheme-1",
+        "section_color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "منتجات مميزة",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "quote": "<p>تجربة رائعة!<\/p>", "author": "محمد", "role": "عميل" , "rating": 5 } },
+        "t2": { "type": "testimonial", "settings": { "quote": "<p>خدمة ممتازة وشحن سريع.<\/p>", "author": "سارة", "role": "عميل" , "rating": 5 } },
+        "t3": { "type": "testimonial", "settings": { "quote": "<p>سأكرر الطلب أكيد.<\/p>", "author": "أحمد", "role": "عميل" , "rating": 4 } }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "title": "آراء العملاء",
+        "heading_size": "h2",
+        "show_rating": true,
+        "columns_desktop": 3,
+        "columns_mobile": 1,
+        "color_scheme": "scheme-1",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "cta": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "نداء لاتخاذ إجراء", "heading_size": "h2" } },
+        "text": { "type": "text", "settings": { "text": "<p>نص قصير يحفز المستخدم على الضغط.<\/p>" } },
+        "button": { "type": "button", "settings": { "button_label": "ابدأ الآن", "button_link": "shopify:\/\/collections\/all", "button_style_secondary": false } }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "full_width": false,
+        "color_scheme": "scheme-3",
+        "padding_top": 44,
+        "padding_bottom": 44
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 44,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "features",
+    "image_with_text",
+    "featured_collection",
+    "testimonials",
+    "cta",
+    "newsletter"
+  ]
+}
