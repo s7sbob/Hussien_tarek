@@ -1,0 +1,514 @@
+<!-- sections/gift-guide-grid.liquid -->
+<section class="gift-guide-grid" data-section-id="{{ section.id }}">
+  <div class="grid-container">
+    <div class="products-grid">
+      {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product] %}
+        {% if product %}
+          <div class="product-card" 
+               data-product-id="{{ product.id }}" 
+               data-block-id="{{ block.id }}">
+            <div class="product-image">
+              <img src="{{ product.featured_image | image_url: width: 400 }}" 
+                   alt="{{ product.title }}" 
+                   loading="lazy">
+              <div class="product-overlay">
+                <button class="quick-view-btn" 
+                        data-product="{{ product.id }}">
+                  Quick View
+                </button>
+              </div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">{{ product.title }}</h3>
+              <div class="product-price">
+                {% if product.compare_at_price > product.price %}
+                  <span class="price-sale">{{ product.price | money }}</span>
+                  <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                {% else %}
+                  <span class="price-regular">{{ product.price | money }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Product Popup Modal -->
+<div id="product-popup" class="popup-overlay">
+  <div class="popup-content">
+    <button class="popup-close">&times;</button>
+    <div class="popup-body">
+      <div class="popup-image">
+        <img id="popup-img" src="" alt="">
+      </div>
+      <div class="popup-details">
+        <h2 id="popup-title"></h2>
+        <div id="popup-price"></div>
+        <div id="popup-description"></div>
+        <div id="popup-variants"></div>
+        <button id="add-to-cart-btn" class="add-to-cart-btn">
+          ADD TO CART
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .gift-guide-grid {
+    padding: 80px 20px;
+    background: #ffffff;
+  }
+  
+  .grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+  
+  .product-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+  
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover .product-image img {
+    transform: scale(1.1);
+  }
+  
+  .product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .product-card:hover .product-overlay {
+    opacity: 1;
+  }
+  
+  .quick-view-btn {
+    background: white;
+    color: #333;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .quick-view-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .product-info {
+    padding: 20px;
+  }
+  
+  .product-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .product-price {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .price-sale {
+    color: #e74c3c;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .price-compare {
+    color: #999;
+    text-decoration: line-through;
+  }
+  
+  .price-regular {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* Popup Styles */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .popup-overlay.active {
+    display: flex;
+  }
+  
+  .popup-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: popupSlide 0.3s ease;
+  }
+  
+  @keyframes popupSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .popup-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+  
+  .popup-image img {
+    width: 100%;
+    border-radius: 15px;
+  }
+  
+  .popup-details h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .add-to-cart-btn {
+    background: #27ae60;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+    transition: background 0.3s ease;
+  }
+  
+  .add-to-cart-btn:hover {
+    background: #219a52;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .popup-body {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+    
+    .popup-content {
+      margin: 20px;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Popup functionality
+  const popup = document.getElementById('product-popup');
+  const closeBtn = document.querySelector('.popup-close');
+  const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+  const addToCartBtn = document.getElementById('add-to-cart-btn');
+  
+  let currentProduct = null;
+  let selectedVariant = null;
+  
+  // Open popup
+  quickViewBtns.forEach(btn => {
+    btn.addEventListener('click', async function(e) {
+      e.stopPropagation();
+      const productId = this.dataset.product;
+      await loadProductData(productId);
+      popup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  
+  // Close popup
+  closeBtn.addEventListener('click', closePopup);
+  popup.addEventListener('click', function(e) {
+    if (e.target === popup) closePopup();
+  });
+  
+  function closePopup() {
+    popup.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
+  // Load product data
+  async function loadProductData(productId) {
+    try {
+      const response = await fetch(`/products/${productId}.js`);
+      const product = await response.json();
+      currentProduct = product;
+      selectedVariant = product.variants[0];
+      
+      updatePopupContent(product);
+    } catch (error) {
+      console.error('Error loading product:', error);
+    }
+  }
+  
+  function updatePopupContent(product) {
+    document.getElementById('popup-img').src = product.featured_image;
+    document.getElementById('popup-title').textContent = product.title;
+    document.getElementById('popup-price').innerHTML = formatPrice(selectedVariant.price);
+    document.getElementById('popup-description').innerHTML = product.description;
+    
+    renderVariants(product.variants);
+  }
+  
+  function renderVariants(variants) {
+    const variantsContainer = document.getElementById('popup-variants');
+    
+    if (variants.length <= 1) {
+      variantsContainer.innerHTML = '';
+      return;
+    }
+    
+    const options = {};
+    variants.forEach(variant => {
+      variant.options.forEach((option, index) => {
+        const optionName = currentProduct.options[index];
+        if (!options[optionName]) options[optionName] = new Set();
+        options[optionName].add(option);
+      });
+    });
+    
+    let variantsHtml = '';
+    Object.keys(options).forEach(optionName => {
+      variantsHtml += `<div class="variant-group">
+        <label>${optionName}</label>
+        <select data-option="${optionName}">`;
+      
+      options[optionName].forEach(optionValue => {
+        variantsHtml += `<option value="${optionValue}">${optionValue}</option>`;
+      });
+      
+      variantsHtml += `</select></div>`;
+    });
+    
+    variantsContainer.innerHTML = variantsHtml;
+    
+    // Add event listeners for variant selection
+    variantsContainer.querySelectorAll('select').forEach(select => {
+      select.addEventListener('change', updateSelectedVariant);
+    });
+  }
+  
+  function updateSelectedVariant() {
+    const selectedOptions = Array.from(document.querySelectorAll('#popup-variants select'))
+      .map(select => select.value);
+    
+    selectedVariant = currentProduct.variants.find(variant => {
+      return variant.options.every((option, index) => option === selectedOptions[index]);
+    }) || currentProduct.variants[0];
+    
+    document.getElementById('popup-price').innerHTML = formatPrice(selectedVariant.price);
+  }
+  
+  function formatPrice(price) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(price / 100);
+  }
+  
+  // Add to cart functionality
+  addToCartBtn.addEventListener('click', async function() {
+    if (!selectedVariant) return;
+    
+    try {
+      const formData = {
+        id: selectedVariant.id,
+        quantity: 1
+      };
+      
+      // Check if auto-add logic applies
+      if (checkAutoAddCondition(selectedVariant)) {
+        await addSoftWinterJacket();
+      }
+      
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        // Update cart UI
+        updateCartCount();
+        showAddedNotification();
+        closePopup();
+      }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+    }
+  });
+  
+  function checkAutoAddCondition(variant) {
+    // Check if variant has Black and Medium options
+    return variant.options.includes('Black') && variant.options.includes('Medium');
+  }
+  
+  async function addSoftWinterJacket() {
+    try {
+      // Find Soft Winter Jacket product
+      const response = await fetch('/products/soft-winter-jacket.js');
+      const jacket = await response.json();
+      
+      if (jacket && jacket.variants[0]) {
+        await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: jacket.variants[0].id,
+            quantity: 1
+          })
+        });
+      }
+    } catch (error) {
+      console.error('Error adding winter jacket:', error);
+    }
+  }
+  
+  function updateCartCount() {
+    // Update cart count in header
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+          cartCount.textContent = cart.item_count;
+        }
+      });
+  }
+  
+  function showAddedNotification() {
+    // Show success notification
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.textContent = 'Product added to cart!';
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #27ae60;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 5px;
+      z-index: 10000;
+      animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Gift Guide Grid",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Guide Grid",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
