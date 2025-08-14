@@ -1,0 +1,12 @@
+/* Import Required Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lustria:wght@400&display=swap');
+
+/* Apply fonts globally */
+body, .banner-main-title, .banner-subtitle, .banner-cta-button, .search-box input, .bottom-nav-text {
+  font-family: 'Jost', sans-serif;
+}
+
+.grid-section-title {
+  font-family: 'Lustria', serif;
+}

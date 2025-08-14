@@ -1,251 +1,391 @@
 {% comment %}
-  Gift Guide Banner Section
-  
-  Features:
-  - Fully customizable text from Theme Editor
-  - Animated button with CSS keyframes
-  - Responsive design for mobile/desktop
-  - No external dependencies
+  Gift Guide Banner Section - Pixel Perfect Implementation
+  Based on provided HTML/CSS design
 {% endcomment %}
 
-<section class="gift-guide-banner" 
-         id="banner-{{ section.id }}" 
-         data-section-id="{{ section.id }}">
-  <div class="banner-wrapper">
-    <div class="banner-container">
-      <!-- Content Side -->
-      <div class="banner-content">
-        {% if section.settings.title != blank %}
-          <h1 class="banner-title">{{ section.settings.title }}</h1>
+<section class="gift-guide-banner-section" data-section-id="{{ section.id }}">
+  <!-- Top Navigation Bar -->
+  <div class="top-nav-bar">
+    <div class="nav-content">
+      <!-- Logo Area -->
+      <div class="logo-container">
+        {% if section.settings.logo_svg != blank %}
+          {{ section.settings.logo_svg }}
+        {% else %}
+          <div class="default-logo">
+            <svg width="151" height="19" viewBox="0 0 151 19" fill="none">
+              <!-- Your SVG logo paths here -->
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" placeholder="{{ section.settings.search_placeholder | default: 'Search here...' }}" />
+          <div class="search-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Banner Content -->
+  <div class="banner-main-content">
+    <div class="banner-wrapper">
+      <!-- Left Content -->
+      <div class="banner-text-content">
+        {% if section.settings.main_title != blank %}
+          <h1 class="banner-main-title">{{ section.settings.main_title }}</h1>
         {% endif %}
         
         {% if section.settings.subtitle != blank %}
           <p class="banner-subtitle">{{ section.settings.subtitle }}</p>
         {% endif %}
         
-        {% if section.settings.description != blank %}
-          <div class="banner-description">
-            {{ section.settings.description }}
-          </div>
-        {% endif %}
-        
         {% if section.settings.button_text != blank %}
-          <button class="banner-cta-btn" 
-                  data-animate="pulse"
-                  onclick="document.querySelector('.gift-guide-grid').scrollIntoView({behavior: 'smooth'})">
-            {{ section.settings.button_text }}
+          <button class="banner-cta-button">
+            <span>{{ section.settings.button_text }}</span>
+            <div class="button-line"></div>
           </button>
         {% endif %}
       </div>
-      
-      <!-- Visual Side -->
-      <div class="banner-visual">
+
+      <!-- Right Visual Content -->
+      <div class="banner-visual-area">
         {% if section.settings.banner_image %}
-          <div class="banner-image-container">
-            <img src="{{ section.settings.banner_image | image_url: width: 600 }}" 
-                 alt="{{ section.settings.banner_image.alt | default: section.settings.title }}"
+          <div class="banner-image-frame">
+            <img src="{{ section.settings.banner_image | image_url: width: 890 }}" 
+                 alt="{{ section.settings.banner_image.alt | default: section.settings.main_title }}"
                  loading="eager">
-          </div>
-        {% else %}
-          <!-- Placeholder if no image -->
-          <div class="banner-placeholder">
-            <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
-              <rect width="200" height="200" fill="#f8f9fa" rx="20"/>
-              <path d="M50 75h100v50H50z" fill="#e9ecef"/>
-              <circle cx="70" cy="90" r="8" fill="#dee2e6"/>
-              <path d="M130 110l-20-15-25 20-15-10" stroke="#dee2e6" stroke-width="2"/>
-            </svg>
           </div>
         {% endif %}
       </div>
     </div>
   </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav-bar">
+    <div class="bottom-nav-content">
+      <span class="bottom-nav-text">{{ section.settings.bottom_nav_text | default: 'Free shipping on orders over $100' }}</span>
+    </div>
+  </div>
 </section>
 
 <style>
-  /* Gift Guide Banner Styles */
-  .gift-guide-banner {
-    padding: 60px 20px;
-    background: {{ section.settings.background_color | default: '#ffffff' }};
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  
-  .banner-wrapper {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .banner-container {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  
-  /* Content Styles */
-  .banner-content {
+/* Gift Guide Banner - Exact Match Styling */
+.gift-guide-banner-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  min-height: 100vh;
+  align-items: center;
+}
+
+/* Top Navigation Bar */
+.top-nav-bar {
+  width: 100%;
+  display: flex;
+  padding: 10px 50px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  gap: 360px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-container {
+  width: 151px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+}
+
+.search-container {
+  width: 207px;
+  height: 44px;
+  position: relative;
+}
+
+.search-box {
+  width: 207px;
+  height: 44px;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.search-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 11.67px 41px;
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: #000000;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+.search-line {
+  position: absolute;
+  top: 21.55px;
+  right: 22px;
+  width: 24px;
+  height: 1px;
+  background-color: #000000;
+}
+
+.search-box::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 44px;
+  background-color: #000000;
+}
+
+/* Main Banner Content */
+.banner-main-content {
+  width: 100%;
+  max-width: 1440px;
+  height: 780px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.banner-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.banner-text-content {
+  position: absolute;
+  left: 67px;
+  top: 425px;
+  z-index: 2;
+}
+
+.banner-main-title {
+  color: #000000;
+  font-size: 70px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  line-height: 100%;
+  margin: 0 0 40px 0;
+  max-width: 500px;
+}
+
+.banner-subtitle {
+  color: #000000;
+  width: 483px;
+  font-size: 20px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  line-height: 139.99%;
+  margin: 0 0 50px 0;
+}
+
+.banner-cta-button {
+  width: 220px;
+  height: 50px;
+  position: relative;
+  background-color: #000000;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-cta-button span {
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  line-height: 20.48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.banner-cta-button .button-line {
+  position: absolute;
+  top: 24.49px;
+  right: 22px;
+  width: 26px;
+  height: 1px;
+  background-color: #ffffff;
+}
+
+.banner-cta-button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 50px;
+  background-color: #ffffff;
+}
+
+.banner-cta-button:hover {
+  background-color: #333333;
+  transform: translateY(-2px);
+}
+
+/* Banner Visual Area */
+.banner-visual-area {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 890px;
+  height: 780px;
+}
+
+.banner-image-frame {
+  position: absolute;
+  top: 378px;
+  left: 0;
+  width: 890px;
+  height: 402px;
+}
+
+.banner-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bottom Navigation */
+.bottom-nav-bar {
+  width: 100%;
+  display: flex;
+  padding: 10px 50px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  margin-top: 90px;
+}
+
+.bottom-nav-content {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  gap: 375px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-nav-text {
+  color: #000000;
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  line-height: 13.42px;
+  text-align: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nav-content {
+    gap: 50px;
+    flex-direction: column;
     padding: 20px 0;
   }
   
-  .banner-title {
-    font-size: 3.8rem;
-    font-weight: 800;
-    color: {{ section.settings.title_color | default: '#2c3e50' }};
-    line-height: 1.1;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
+  .search-container {
+    width: 100%;
+    max-width: 300px;
   }
   
-  .banner-subtitle {
-    font-size: 1.4rem;
-    color: {{ section.settings.subtitle_color | default: '#7f8c8d' }};
-    line-height: 1.5;
-    margin-bottom: 30px;
-    font-weight: 400;
+  .search-box {
+    width: 100%;
   }
   
-  .banner-description {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.6;
+  .banner-main-content {
+    height: auto;
+    padding: 40px 20px;
+  }
+  
+  .banner-text-content {
+    position: relative;
+    left: auto;
+    top: auto;
+    text-align: center;
     margin-bottom: 40px;
   }
   
-  /* Animated CTA Button */
-  .banner-cta-btn {
-    background: {{ section.settings.button_bg | default: '#e74c3c' }};
-    color: {{ section.settings.button_text_color | default: '#ffffff' }};
-    padding: 18px 45px;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-    position: relative;
-    overflow: hidden;
+  .banner-main-title {
+    font-size: 45px;
+    max-width: 100%;
   }
   
-  .banner-cta-btn::before {
-    content: '';
-    position: absolute;
+  .banner-subtitle {
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .banner-visual-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    top: auto;
+    right: auto;
+  }
+  
+  .banner-image-frame {
+    position: relative;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.6s;
+    height: 300px;
   }
   
-  .banner-cta-btn:hover::before {
-    left: 100%;
+  .bottom-nav-content {
+    gap: 0;
   }
   
-  .banner-cta-btn:hover {
-    background: {{ section.settings.button_hover_bg | default: '#c0392b' }};
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+  .bottom-nav-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-main-title {
+    font-size: 35px;
   }
   
-  /* Button Animation */
-  .banner-cta-btn[data-animate="pulse"] {
-    animation: buttonPulse 2.5s infinite ease-in-out;
+  .banner-subtitle {
+    font-size: 16px;
   }
   
-  @keyframes buttonPulse {
-    0%, 100% { 
-      transform: scale(1); 
-      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-    }
-    50% { 
-      transform: scale(1.05); 
-      box-shadow: 0 8px 25px rgba(231, 76, 60, 0.5);
-    }
+  .banner-cta-button {
+    width: 180px;
+    height: 45px;
   }
   
-  /* Visual Styles */
-  .banner-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .nav-content,
+  .bottom-nav-content {
+    padding: 0 15px;
   }
-  
-  .banner-image-container {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-    transform: rotate(2deg);
-    transition: transform 0.3s ease;
-  }
-  
-  .banner-image-container:hover {
-    transform: rotate(0deg) scale(1.02);
-  }
-  
-  .banner-image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .banner-placeholder {
-    opacity: 0.5;
-  }
-  
-  /* Mobile Responsive */
-  @media (max-width: 1024px) {
-    .banner-container {
-      grid-template-columns: 1fr;
-      gap: 50px;
-      text-align: center;
-    }
-    
-    .banner-title {
-      font-size: 3.2rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .gift-guide-banner {
-      padding: 40px 15px;
-      min-height: 60vh;
-    }
-    
-    .banner-title {
-      font-size: 2.5rem;
-    }
-    
-    .banner-subtitle {
-      font-size: 1.2rem;
-    }
-    
-    .banner-cta-btn {
-      padding: 15px 35px;
-      font-size: 1rem;
-    }
-    
-    .banner-container {
-      gap: 30px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .banner-title {
-      font-size: 2rem;
-    }
-    
-    .banner-subtitle {
-      font-size: 1.1rem;
-    }
-  }
+}
 </style>
 
 {% schema %}
@@ -255,79 +395,55 @@
   "settings": [
     {
       "type": "header",
-      "content": "Content Settings"
+      "content": "Navigation Settings"
+    },
+    {
+      "type": "html",
+      "id": "logo_svg",
+      "label": "Logo SVG Code"
     },
     {
       "type": "text",
-      "id": "title",
-      "label": "Banner Title",
-      "default": "The Ultimate Gift Guide"
+      "id": "search_placeholder",
+      "label": "Search Placeholder",
+      "default": "Search here..."
+    },
+    {
+      "type": "header",
+      "content": "Banner Content"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "The Gift Guide"
     },
     {
       "type": "textarea",
       "id": "subtitle",
-      "label": "Banner Subtitle", 
-      "default": "Discover perfect gifts for every special person in your life"
-    },
-    {
-      "type": "richtext",
-      "id": "description",
-      "label": "Banner Description"
+      "label": "Subtitle",
+      "default": "Find the ideal gift for your loved ones from our curated collection of premium products."
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "EXPLORE GIFTS"
-    },
-    {
-      "type": "header",
-      "content": "Visual Settings"
+      "default": "CHOOSE GIFT"
     },
     {
       "type": "image_picker",
       "id": "banner_image",
-      "label": "Banner Image"
+      "label": "Banner Background Image"
     },
     {
       "type": "header",
-      "content": "Color Settings"
+      "content": "Bottom Navigation"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "title_color",
-      "label": "Title Color",
-      "default": "#2c3e50"
-    },
-    {
-      "type": "color",
-      "id": "subtitle_color",
-      "label": "Subtitle Color", 
-      "default": "#7f8c8d"
-    },
-    {
-      "type": "color",
-      "id": "button_bg",
-      "label": "Button Background",
-      "default": "#e74c3c"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_bg",
-      "label": "Button Hover Background",
-      "default": "#c0392b"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#ffffff"
+      "type": "text",
+      "id": "bottom_nav_text",
+      "label": "Bottom Navigation Text",
+      "default": "Free shipping on orders over $100"
     }
   ],
   "presets": [
