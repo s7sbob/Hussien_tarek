@@ -1,0 +1,236 @@
+{
+  "tables": [
+    {
+      "id": 1,
+      "number": 1,
+      "status": "available",
+      "receipts": []
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "status": "occupied",
+      "receipts": [
+        {
+          "id": "R001",
+          "tableId": 2,
+          "createdAt": "2024-01-15T10:30:00Z",
+          "items": [
+            {
+              "id": 1,
+              "name": "كريب نوتيلا",
+              "quantity": 2,
+              "price": 25.00,
+              "category": "حلويات"
+            },
+            {
+              "id": 2,
+              "name": "بيتزا مارجريتا",
+              "quantity": 1,
+              "price": 45.00,
+              "category": "بيتزا"
+            },
+            {
+              "id": 3,
+              "name": "بطاطس مقلية",
+              "quantity": 3,
+              "price": 15.00,
+              "category": "مقبلات"
+            }
+          ],
+          "subtotal": 140.00,
+          "tax": 19.60,
+          "total": 159.60,
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "status": "occupied",
+      "receipts": [
+        {
+          "id": "R002",
+          "tableId": 3,
+          "createdAt": "2024-01-15T11:00:00Z",
+          "items": [
+            {
+              "id": 4,
+              "name": "شاورما دجاج",
+              "quantity": 2,
+              "price": 30.00,
+              "category": "ساندويتش"
+            },
+            {
+              "id": 5,
+              "name": "سلطة خضراء",
+              "quantity": 1,
+              "price": 20.00,
+              "category": "سلطات"
+            }
+          ],
+          "subtotal": 80.00,
+          "tax": 11.20,
+          "total": 91.20,
+          "status": "open"
+        },
+        {
+          "id": "R003",
+          "tableId": 3,
+          "createdAt": "2024-01-15T11:15:00Z",
+          "items": [
+            {
+              "id": 6,
+              "name": "عصير برتقال",
+              "quantity": 2,
+              "price": 12.00,
+              "category": "مشروبات"
+            },
+            {
+              "id": 7,
+              "name": "قهوة تركية",
+              "quantity": 1,
+              "price": 18.00,
+              "category": "مشروبات ساخنة"
+            }
+          ],
+          "subtotal": 42.00,
+          "tax": 5.88,
+          "total": 47.88,
+          "status": "open"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "status": "available",
+      "receipts": []
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "status": "available",
+      "receipts": []
+    },
+    {
+      "id": 6,
+      "number": 6,
+      "status": "occupied",
+      "receipts": [
+        {
+          "id": "R004",
+          "tableId": 6,
+          "createdAt": "2024-01-15T12:00:00Z",
+          "items": [
+            {
+              "id": 8,
+              "name": "برجر دجاج",
+              "quantity": 1,
+              "price": 35.00,
+              "category": "برجر"
+            },
+            {
+              "id": 9,
+              "name": "كولا",
+              "quantity": 2,
+              "price": 10.00,
+              "category": "مشروبات"
+            },
+            {
+              "id": 10,
+              "name": "آيس كريم فانيليا",
+              "quantity": 1,
+              "price": 22.00,
+              "category": "حلويات"
+            }
+          ],
+          "subtotal": 77.00,
+          "tax": 10.78,
+          "total": 87.78,
+          "status": "open"
+        }
+      ]
+    }
+  ],
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "كريب نوتيلا",
+      "price": 25.00,
+      "category": "حلويات",
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "بيتزا مارجريتا",
+      "price": 45.00,
+      "category": "بيتزا",
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "بطاطس مقلية",
+      "price": 15.00,
+      "category": "مقبلات",
+      "available": true
+    },
+    {
+      "id": 4,
+      "name": "شاورما دجاج",
+      "price": 30.00,
+      "category": "ساندويتش",
+      "available": true
+    },
+    {
+      "id": 5,
+      "name": "سلطة خضراء",
+      "price": 20.00,
+      "category": "سلطات",
+      "available": true
+    },
+    {
+      "id": 6,
+      "name": "عصير برتقال",
+      "price": 12.00,
+      "category": "مشروبات",
+      "available": true
+    },
+    {
+      "id": 7,
+      "name": "قهوة تركية",
+      "price": 18.00,
+      "category": "مشروبات ساخنة",
+      "available": true
+    },
+    {
+      "id": 8,
+      "name": "برجر دجاج",
+      "price": 35.00,
+      "category": "برجر",
+      "available": true
+    },
+    {
+      "id": 9,
+      "name": "كولا",
+      "price": 10.00,
+      "category": "مشروبات",
+      "available": true
+    },
+    {
+      "id": 10,
+      "name": "آيس كريم فانيليا",
+      "price": 22.00,
+      "category": "حلويات",
+      "available": true
+    }
+  ],
+  "settings": {
+    "taxRate": 0.14,
+    "currency": "ج.م",
+    "language": "ar",
+    "dateFormat": "DD/MM/YYYY",
+    "timeFormat": "24h"
+  }
+}
