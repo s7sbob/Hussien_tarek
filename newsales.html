@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام نقاط البيع - صفحة المبيعات الجديدة</title>
+    <link rel="stylesheet" href="assets/newsales.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="pos-container">
+        <!-- Header -->
+        <header class="pos-header">
+            <h1>نظام نقاط البيع</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="table-transfer-btn">نقل ترابيزة</button>
+                <button class="btn btn-secondary" id="table-split-btn">فصل ترابيزة</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="pos-main">
+            <!-- Tables Grid -->
+            <section class="tables-section">
+                <h2>الطاولات</h2>
+                <div class="tables-grid" id="tables-grid">
+                    <!-- Tables will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <!-- Current Order Section -->
+            <section class="current-order-section" id="current-order-section" style="display: none;">
+                <div class="order-header">
+                    <h3 id="order-title">طلب الطاولة #</h3>
+                    <div class="order-actions">
+                        <button class="btn btn-success" id="save-order-btn">حفظ</button>
+                        <button class="btn btn-danger" id="close-order-btn">إغلاق</button>
+                    </div>
+                </div>
+                
+                <div class="order-content">
+                    <div class="order-items" id="order-items">
+                        <!-- Order items will be displayed here -->
+                    </div>
+                    
+                    <div class="order-summary">
+                        <div class="summary-item">
+                            <span>المجموع الفرعي:</span>
+                            <span id="subtotal">0.00 ج.م</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>الضرائب:</span>
+                            <span id="tax">0.00 ج.م</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>المجموع الكلي:</span>
+                            <span id="total">0.00 ج.م</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modals -->
+        
+        <!-- Table Transfer Modal -->
+        <div class="modal" id="transfer-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>نقل ترابيزة</h3>
+                    <button class="close-btn" id="close-transfer-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="transfer-form">
+                        <div class="form-group">
+                            <label>من الطاولة:</label>
+                            <select id="from-table-select">
+                                <option value="">اختر الطاولة</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>إلى الطاولة:</label>
+                            <select id="to-table-select">
+                                <option value="">اختر الطاولة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="confirm-transfer-btn">نقل</button>
+                    <button class="btn btn-secondary" id="cancel-transfer-btn">إلغاء</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Split Modal -->
+        <div class="modal" id="split-modal">
+            <div class="modal-content split-modal-content">
+                <div class="modal-header">
+                    <h3>فصل ترابيزة</h3>
+                    <button class="close-btn" id="close-split-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="split-container">
+                        <!-- Original Order Items -->
+                        <div class="original-order">
+                            <h4>الطلب الأصلي</h4>
+                            <div class="items-list" id="original-items">
+                                <!-- Original items will be displayed here -->
+                            </div>
+                        </div>
+
+                        <!-- Split Orders -->
+                        <div class="split-orders" id="split-orders">
+                            <!-- Split orders will be created dynamically -->
+                        </div>
+
+                        <div class="split-actions">
+                            <button class="btn btn-primary" id="add-receipt-btn">إضافة ريسيت جديد</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="confirm-split-btn">تأكيد الفصل</button>
+                    <button class="btn btn-secondary" id="cancel-split-btn">إلغاء</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Receipt Selection Modal -->
+        <div class="modal" id="receipt-selection-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>اختر الريسيت</h3>
+                    <button class="close-btn" id="close-receipt-selection-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="receipts-list" id="receipts-list">
+                        <!-- Receipts will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/newsales.js"></script>
+</body>
+</html>
